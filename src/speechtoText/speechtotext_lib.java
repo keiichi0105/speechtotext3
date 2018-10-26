@@ -39,15 +39,17 @@ public class speechtotext_lib {
 		  public void getJson(SpeechRecognitionResults transcript) {
 			    String s = String.valueOf(transcript);
 			    ObjectMapper mapper = new ObjectMapper();
-
+			    MySQL mysql = new MySQL();
+    
 			    try {
 					JsonNode node = mapper.readTree(s);
-					for (int i = 0 ; i < node.get("results").size() ; i++ ) {
-						
+					for (int i = 0 ; i < node.get("results").size() ; i++ ) {	
 					String text = node.get("results").get(i).get("alternatives").get(0).get("transcript").toString();
-					double confidence  = node.get("results").get(0).get("alternatives").get(0).get("confidence").asDouble();
 					System.out.println(text);
-					System.out.println(confidence);
+					double confidence  = node.get("results").get(0).get("alternatives").get(0).get("confidence").asDouble();
+				    System.out.println(confidence);
+					mysql.updateImage(text, confidence);
+
 					}		
 				} catch (IOException e) {
 					// TODO Auto-generated catch block

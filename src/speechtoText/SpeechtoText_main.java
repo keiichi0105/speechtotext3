@@ -17,7 +17,8 @@ public class SpeechtoText_main {
 		
 		speechtotext_lib slib = new speechtotext_lib(new File("audio/track06.mp3"));
         SpeechRecognitionResults transcript = slib.getTranscript();
-    System.out.println(transcript);
-    slib.getJson(transcript);
+        System.out.println(transcript);
+        slib.getJson(transcript);
+	
 	}
 }
